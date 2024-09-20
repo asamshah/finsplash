@@ -1,41 +1,63 @@
-/* components/Categories.css */
 .categories-container {
-    width: 100%;
-    overflow-x: auto;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.375rem;
-    margin-bottom: 1rem;
-  }
-  
-  .categories-scroll {
-    display: flex;
-    padding: 1rem;
-    gap: 1rem;
-  }
-  
-  .category {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-  }
-  
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+.categories-scroll {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+  min-width: max-content;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+}
+
+.category-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.category-name {
+  font-size: 12px;
+  text-align: center;
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.category.selected .category-name {
+  font-weight: bold;
+}
+
+/* Add responsive styles */
+@media (max-width: 768px) {
   .category-icon {
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 50%;
-    background-color: #f3f4f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
   }
-  
-  .icon-placeholder {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #4b5563;
-  }
-  
+
   .category-name {
-    font-size: 0.75rem;
+    max-width: 50px;
   }
+}

@@ -1,63 +1,22 @@
-/* components/Header.css */
 .header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background-color: white;
-    border-bottom: 1px solid #e5e7eb;
-  }
-  
-  .header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 3.5rem;
-    padding: 0 1rem;
-    max-width: 64rem;
-    margin: 0 auto;
-  }
-  
-  .logo {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  
-  .search-container {
-    position: relative;
-    max-width: 16rem;
-    flex: 1;
-    margin: 0 1rem;
-  }
-  
-  .search-icon {
-    position: absolute;
-    left: 0.5rem;
-    top: 0.625rem;
-    height: 1rem;
-    width: 1rem;
-    color: #6b7280;
-  }
-  
-  .search-input {
-    width: 100%;
-    padding: 0.5rem 0.5rem 0.5rem 2rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.25rem;
-  }
-  
-  .nav {
-    display: flex;
-    gap: 0.5rem;
-  }
-  
-  .nav-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-  }
-  
-  .nav-button svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-container {
+  display: flex;
+  justify-content: center; /* Change to center the logo */
+  align-items: center;
+  height: 3.5rem;
+  padding: 0 1rem;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.logo img {
+  width: 10px; /* Adjust as needed */
+  height: 20px; /* Adjust as needed */
+}

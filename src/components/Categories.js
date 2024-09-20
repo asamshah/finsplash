@@ -1,23 +1,33 @@
-// src/components/Categories.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { UNSPLASH_CATEGORIES, getCategoryImage } from '../services/unsplashService';
 import './Categories.css';
 
 const Categories = ({ onSelectCategory, selectedCategory }) => {
-  const categories = [
-    'All', 'Nature', 'Travel', 'Architecture', 'Food', 'Technology', 'People'
-  ];
+  const [categoryImages, setCategoryImages] = useState({});
+
+  useEffect(() => {
+    const fetchCategoryImages = async () => {
+      const images = {};
+      for (const category of UNSPLASH_CATEGORIES) {
+        images[category] = await getCategoryImage(category);
+      }
+      setCategoryImages(images);
+    };
+
+    fetchCategoryImages();
+  }, []);
 
   return (
     <div className="categories-container">
       <div className="categories-scroll">
-        {categories.map((category, i) => (
+        {UNSPLASH_CATEGORIES.map((category, i) => (
           <div 
             key={i} 
             className={`category ${selectedCategory === category ? 'selected' : ''}`}
             onClick={() => onSelectCategory(category)}
           >
             <div className="category-icon">
-              <div className="icon-placeholder">{category[0]}</div>
+              <img src={categoryImages[category]} alt={category} className="category-image" />
             </div>
             <span className="category-name">{category}</span>
           </div>
