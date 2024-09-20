@@ -3,7 +3,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from './components/Header';
 import Categories from './components/Categories';
 import Post from './components/Post';
-import { getPhotos, getPhotosByCategory } from './services/unsplashService';
+import { getPhotos, getPhotosByCategory, getAllCategoriesPhotos } from './services/unsplashService';
 import './App.css';
 
 const App = () => {
@@ -20,8 +20,9 @@ const App = () => {
     try {
       const newPage = reset ? 1 : page;
       let fetchedPhotos;
+      
       if (selectedCategory === 'All') {
-        fetchedPhotos = await getPhotos(newPage);
+        fetchedPhotos = await getAllCategoriesPhotos(newPage, 60);
       } else {
         fetchedPhotos = await getPhotosByCategory(selectedCategory, newPage);
       }

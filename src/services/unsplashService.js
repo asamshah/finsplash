@@ -1,8 +1,7 @@
-import { createApi } from 'unsplash-js';
+import axios from 'axios';
 
-const unsplash = createApi({
-  accessKey: 'Client-ID ***REMOVED***',
-});
+const UNSPLASH_API_URL = 'https://api.unsplash.com';
+const UNSPLASH_ACCESS_KEY = 'Client-ID ***REMOVED***';
 
 export const UNSPLASH_CATEGORIES = [
   'All',
@@ -23,51 +22,71 @@ export const UNSPLASH_CATEGORIES = [
   'Arts + Culture'
 ];
 
-export const getPhotos = async (page = 1) => {
+const unsplashApi = axios.create({
+  baseURL: UNSPLASH_API_URL,
+  headers: {
+    Authorization: `Client-ID ***REMOVED***`,
+  },
+});
+
+export const getPhotos = async (page = 1, perPage = 10) => {
   try {
-    const response = await unsplash.photos.list({ page, perPage: 10 });
-    return response.response.results;
+    const response = await unsplashApi.get('/photos', {
+      params: {
+        page,
+        per_page: perPage,
+        order_by: 'latest',
+      },
+    });
+    return response.data;
   } catch (error) {
     console.error('Error fetching photos:', error);
     return [];
   }
 };
 
-export const getPhotosByCategory = async (category, page = 1) => {
+export const getPhotosByCategory = async (category, page = 1, perPage = 10) => {
   try {
-    if (category === 'All') {
-      return getPhotos(page);
-    }
-    const response = await unsplash.search.getPhotos({
-      query: category,
-      page,
-      perPage: 10,
+    const response = await unsplashApi.get('/search/photos', {
+      params: {
+        query: category,
+        page,
+        per_page: perPage,
+        order_by: 'latest',
+      },
     });
-    return response.response.results;
+    return response.data.results;
   } catch (error) {
     console.error(`Error fetching photos for category ${category}:`, error);
     return [];
   }
 };
 
-export const getCategoryImage = async (category) => {
+export const getAllCategoriesPhotos = async (page = 1, perPage = 30) => {
   try {
-    let response;
-    if (category === 'All') {
-      response = await unsplash.photos.getRandom({ orientation: 'squarish' });
-    } else {
-      response = await unsplash.photos.getRandom({ query: category, orientation: 'squarish' });
-    }
-    
-    if (response.type === 'error' || !response.response) {
-      throw new Error('Failed to fetch image from Unsplash');
-    }
-    
-    return response.response.urls.small;
+    const categoryPromises = UNSPLASH_CATEGORIES.slice(1).map(category => 
+      getPhotosByCategory(category, page, Math.floor(perPage / (UNSPLASH_CATEGORIES.length - 1)))
+    );
+    const categoryResults = await Promise.all(categoryPromises);
+    const allPhotos = categoryResults.flat();
+    return allPhotos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
   } catch (error) {
-    console.error(`Error fetching category image for ${category}:`, error);
-    return `https://via.placeholder.com/150?text=${encodeURIComponent(category)}`;
+    console.error('Error fetching photos for all categories:', error);
+    return [];
   }
 };
 
-export default unsplash;
+export const getCategoryImage = async (category) => {
+  try {
+    const response = await unsplashApi.get('/search/photos', {
+      params: {
+        query: category,
+        per_page: 1,
+      },
+    });
+    return response.data.results[0].urls.small;
+  } catch (error) {
+    console.error(`Error fetching image for category ${category}:`, error);
+    return '';
+  }
+};
