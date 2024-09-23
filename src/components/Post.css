@@ -51,18 +51,6 @@
   margin-bottom: 0.5rem;
 }
 
-.post-views {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  color: #4b5563;
-}
-
-.post-views svg {
-  width: 1rem;
-  height: 1rem;
-}
-
 .post-description {
   color: #1f2937;
 }
@@ -86,4 +74,12 @@
   height: auto;
   object-fit: cover;
   display: block;
+}
+
+@media (max-width: 768px) {
+  .post {
+    margin: 0; /* Remove bottom margin */
+    width: 100%; /* Ensure full width */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+  }
 }

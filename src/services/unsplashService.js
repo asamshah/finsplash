@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const UNSPLASH_API_URL = 'https://api.unsplash.com';
-const UNSPLASH_ACCESS_KEY = 'Client-ID ***REMOVED***';
 
 export const UNSPLASH_CATEGORIES = [
   'All',

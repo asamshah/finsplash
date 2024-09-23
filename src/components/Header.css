@@ -16,7 +16,83 @@
   margin: 0 auto;
 }
 
-.logo img {
-  width: 10px; /* Adjust as needed */
-  height: 20px; /* Adjust as needed */
+.info-icon {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #616161;
+  fill: none;
+  position: absolute; /* Position the icon absolutely */
+  right: 40rem; /* Move the icon to the right */
+
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.327);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.popup {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 100px; /* Position at the top */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for centering */
+  max-width: 30%;
+  text-align: center;
+}
+.popup-icon {
+  width: 20%; /* Adjust size as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 10px; /* Space between image and divider */
+}
+
+.divider {
+  height: 1px; /* Height of the divider */
+  background-color: rgba(0, 0, 0, 0.1); /* Faint color */
+  margin: 10px 0; /* Space around the divider */
+}
+
+.popup p {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.link {
+  color: inherit; /* Use the current text color */
+  text-decoration: none; /* Remove underline */
+  font-weight: 600;
+}
+
+.link:hover {
+  text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+
+/* Media Query for Mobile Responsiveness */
+@media (max-width: 768px) {
+  .header-container {
+    justify-content: space-between; /* Keep logo and icon apart */
+  }
+
+  .info-icon {
+    position: relative; /* Change to relative for better positioning */
+    right: 0; /* Remove fixed right positioning */
+  }
+  .popup-icon {
+    width: 80%; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Space between image and divider */
+  }
 }

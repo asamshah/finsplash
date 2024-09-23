@@ -28,3 +28,22 @@ body {
   flex-direction: column;
   gap: 1rem;
 }
+
+@media (max-width: 768px) {
+  .app {
+    padding: 0; /* Remove any default padding */
+  }
+  .main-content {
+    padding: 0; /* Remove any default padding */
+  }
+  .container {
+    max-width: 100%; /* Ensure full width */
+    padding: 0; /* Remove padding to avoid gaps */
+    margin: 0; /* Remove margin to avoid gaps */
+  }
+  .posts {
+    margin: 0; /* Remove bottom margin */
+    width: 100%; /* Ensure full width */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+  }
+}
