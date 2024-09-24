@@ -24,9 +24,11 @@ export const UNSPLASH_CATEGORIES = [
 const unsplashApi = axios.create({
   baseURL: UNSPLASH_API_URL,
   headers: {
-    Authorization: `Client-ID ***REMOVED***`,
+    Authorization: `Client-ID ${process.env.REACT_APP_UNSPLASH_API_KEY}`, // Use the environment variable
   },
 });
+
+export default unsplashApi;
 
 export const getPhotos = async (page = 1, perPage = 10) => {
   try {
