@@ -11,3 +11,6 @@ The app is serverless and is built with React. I'm using the Unsplash API to gra
 ## 🐵 Feedback
 
 Depending on many factors, i am unlikely to add new features to it unless there is a huge demand for it. If you have any ideas for improvements or want to report bugs, feel free to contact me at asamshah.com.
+
+![browser](browser.png)
+![phone](phone.png)
