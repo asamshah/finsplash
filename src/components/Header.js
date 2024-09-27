@@ -34,7 +34,7 @@ const Header = () => {
           <div className="divider"></div> {/* Divider below the image */}
           <p>
             Hey! Thanks for checking out the app. 🙂 If you have any questions or want to report any bugs, you can reach me at 
-            <a href="https://asamshah.com" target="_blank" rel="noopener noreferrer" className="link"> asamshah.com</a>
+            <a href="https://asamville.com" target="_blank" rel="noopener noreferrer" className="link"> asamville.com</a>
           </p>
         </div>
       </div>
