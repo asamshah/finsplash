@@ -56,6 +56,14 @@ export const getPhotosByCategory = async (category, page = 1, perPage = 10) => {
         order_by: 'latest',
       },
     });
+    
+    // Log rate limit information from the response headers
+    const rateLimit = response.headers['x-ratelimit-limit'];
+    const rateLimitRemaining = response.headers['x-ratelimit-remaining'];
+
+    console.log(`Rate Limit: ${rateLimit}`);
+    console.log(`Rate Limit Remaining: ${rateLimitRemaining}`);
+
     return response.data.results;
   } catch (error) {
     console.error(`Error fetching photos for category ${category}:`, error);
